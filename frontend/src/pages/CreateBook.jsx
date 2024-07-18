@@ -4,9 +4,7 @@ import Spinner from '../components/Spinner';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import  RateBook  from "../components/RateBook";
 import StarRating from "../components/StarRating";
-
 
 const CreateBooks = () => {
   const [title, setTitle] = useState('');
@@ -19,6 +17,11 @@ const CreateBooks = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveBook = () => {
+    if (rating <= 0 || rating > 5) {
+      enqueueSnackbar('Rating must be a number between 1 and 5', { variant: 'error' });
+      return;
+    }
+
     const data = {
       title,
       author,
@@ -36,7 +39,6 @@ const CreateBooks = () => {
       })
       .catch((error) => {
         setLoading(false);
-        // alert('An error happened. Please Chack console');
         enqueueSnackbar('Error', { variant: 'error' });
         console.log(error);
       });
@@ -86,16 +88,9 @@ const CreateBooks = () => {
         </div>
 
         <div className='my-4'>
-        <label className='text-xl mr-4 text-gray-500'>Rating</label>
-       {/* <StarRating rating={rating} /> */}
-        <input
-          type="number"
-          value={rating}
-          onChange={(e) => setRating(Number(e.target.value))}
-          className='border-2 border-gray-500 px-4 py-2  w-full '
-        />
-      </div>
-
+          <label className='text-xl mr-4 text-gray-500'>Rating</label>
+          <StarRating rating={rating} setRating={setRating} />
+        </div>
 
         <button className='p-2 bg-sky-300 m-8' onClick={handleSaveBook}>
           Save
@@ -105,4 +100,4 @@ const CreateBooks = () => {
   );
 }
 
-export default CreateBooks
+export default CreateBooks;
