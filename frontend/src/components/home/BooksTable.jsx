@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
-
+import  RateBook  from "../RateBook";
+import StarRating from "../StarRating";
 
 const BooksTable = ({ books }) => {
   return (
@@ -19,7 +20,7 @@ const BooksTable = ({ books }) => {
           Publish Year
         </th>
         <th className="border border-slate-600 rounded md max-md:hidden">
-          Note
+          Rating
         </th>
         <th className="border border-slate-600 rounded md">Operations</th>
       </tr>
@@ -41,7 +42,7 @@ const BooksTable = ({ books }) => {
               {book.publishYear}
             </td>
             <td className="border border-slate-700 rounded-md text-center max-md:hidden">
-              {book.note}
+            <StarRating rating={book.rating} editable={false} /> ({book.ratingsCount} ratings)
             </td>
             
             <td className="border border-slate-700 rounded-md text-center">

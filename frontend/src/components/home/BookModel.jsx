@@ -1,6 +1,8 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { PiBookOpenTextLight } from "react-icons/pi";
 import { BiUserCircle } from "react-icons/bi";
+import  RateBook  from "../RateBook";
+import StarRating from "../StarRating";
 const BookModel = ({book, onClose}) => {
   return (
     <div className="fixed bg-black bg-opacity-60 top-0 right-0 left-0 bottom-0 z-50 flex justify-center items-center"
@@ -27,6 +29,13 @@ const BookModel = ({book, onClose}) => {
           <BiUserCircle className='text-red-300 text-2xl'/>
           <h2 className='my-1'>{book.author}</h2>
           </div>
+          
+          <div>
+            <p>
+            <StarRating rating={book.rating} editable={false} /> ({book.ratingsCount} ratings)
+            </p>
+          </div>
+
           <p className="mt-4">Anything you want to show</p>
           <p className="my-2">
             {book.note}
