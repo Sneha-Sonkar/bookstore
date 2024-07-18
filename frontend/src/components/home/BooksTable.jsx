@@ -42,7 +42,8 @@ const BooksTable = ({ books }) => {
               {book.publishYear}
             </td>
             <td className="border border-slate-700 rounded-md text-center max-md:hidden">
-            <StarRating rating={book.rating} editable={false} /> ({book.ratingsCount} ratings)
+            <StarRating rating={book.rating} editable={false} /> 
+            {/* ({book.ratingsCount} ratings) */}
             </td>
             
             <td className="border border-slate-700 rounded-md text-center">

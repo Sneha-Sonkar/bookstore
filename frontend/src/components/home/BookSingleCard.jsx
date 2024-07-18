@@ -35,7 +35,8 @@ const BookSingleCard = ({book}) => {
           </div>
           <div>
             <p>
-            <StarRating rating={book.rating} editable={false} /> ({book.ratingsCount} ratings)
+            <StarRating rating={book.rating} editable={false} /> 
+            {/* ({book.ratingsCount} ratings) */}
             </p>
           </div>
           <div className='flex justify-between items-center gap-x-2 mt-4 p-4'>

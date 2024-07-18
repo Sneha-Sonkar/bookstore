@@ -32,7 +32,8 @@ const BookModel = ({book, onClose}) => {
           
           <div>
             <p>
-            <StarRating rating={book.rating} editable={false} /> ({book.ratingsCount} ratings)
+            <StarRating rating={book.rating} editable={false} /> 
+            {/* ({book.ratingsCount} ratings) */}
             </p>
           </div>
 

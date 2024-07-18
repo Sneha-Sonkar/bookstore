@@ -55,7 +55,8 @@ const ShowBook = () => {
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Rating</span>
             <span>
-            <StarRating rating={book.rating}/> ({book.ratingsCount} ratings)
+            <StarRating rating={book.rating}/> 
+            {/* ({book.ratingsCount} ratings) */}
           </span>
             
           </div>
