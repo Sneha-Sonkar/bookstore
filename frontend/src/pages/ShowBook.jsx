@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import Spinner from '../components/Spinner';
-
+import StarRating from '../components/StarRating';
+import RateBook from '../components/RateBook';
 const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
@@ -51,6 +52,16 @@ const ShowBook = () => {
             <span className='text-xl mr-4 text-gray-500'>Note</span>
             <span>{book.note}</span>
           </div>
+          <div className='my-4'>
+            <span className='text-xl mr-4 text-gray-500'>Rating</span>
+            <span>
+            <StarRating rating={book.rating}/> 
+            {/* ({book.ratingsCount} ratings) */}
+          </span>
+            
+          </div>
+
+
           <div className='my-4'>
             <span className='text-xl mr-4 text-gray-500'>Create Time</span>
             <span>{new Date(book.createdAt).toString()}</span>

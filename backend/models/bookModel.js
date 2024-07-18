@@ -16,7 +16,16 @@ const bookSchema = mongoose.Schema({
     },
     note:{
         type:String
+    },
+    rating:{
+        type:Number,
+        default: 0
+    },
+    ratingsCount:{
+        type:String,
+        default: 0
     }
+
 },
 {
     timestamps: true,

@@ -7,6 +7,10 @@ import { BsInfoCircle } from 'react-icons/bs';
 import { MdOutlineDelete } from 'react-icons/md';
 import { useState } from 'react';
 import BookModel from './BookModel';
+import  RateBook  from "../RateBook";
+import StarRating from "../StarRating";
+
+
 const BookSingleCard = ({book}) => {
     const [showModal, setShowModal] = useState(false);
   return (
@@ -28,6 +32,12 @@ const BookSingleCard = ({book}) => {
           <div className='flex justify-start items-center gap-x-2'>
           <BiUserCircle className='text-red-300 text-2xl'/>
           <h2 className='my-1'>{book.author}</h2>
+          </div>
+          <div>
+            <p>
+            <StarRating rating={book.rating} editable={false} /> 
+            {/* ({book.ratingsCount} ratings) */}
+            </p>
           </div>
           <div className='flex justify-between items-center gap-x-2 mt-4 p-4'>
             <BiShow className='text-3xl text-blue-800 hover:text-black cursor-pointer'

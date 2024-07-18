@@ -1,4 +1,3 @@
-
 import express from 'express';
 import { Book } from '../models/bookModel.js';
 const router = express.Router();
@@ -20,6 +19,7 @@ router.post('/', async (request, response) => {
             author: request.body.author,
             publishYear: request.body.publishYear,
             note: request.body.note,
+            rating: request.body.rating,
         };
         const book = await Book.create(newBook);
     }
@@ -100,5 +100,30 @@ router.delete('/:id', async (request, response) => {
         response.status(500).send({message: error.message});
     }
 });
+
+router.post('/:id/rate', async (req, res) => {
+    const bookId = req.params.id;
+    const { rating } = req.body;
+
+    if (rating < 0 || rating > 5) {
+        return res.status(400).json({ message: 'Rating must be between 0 and 5' });
+    }
+
+    try {
+        const book = await Book.findById(bookId);
+        if (!book) return res.status(404).send('Book not found');
+
+        const totalRating = book.rating * book.ratingsCount + rating;
+        book.ratingsCount += 1;
+        book.rating = totalRating / book.ratingsCount;
+
+        await book.save();
+        res.status(200).json({ message: 'Rating updated successfully', book });
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
+});
+
+
 
 export default router;
